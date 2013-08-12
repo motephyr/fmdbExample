@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E38116433564A07A054411B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8B575B0834419ABFC2EB3F /* libPods.a */; };
 		F368008917043B7B002A403F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F368008817043B7B002A403F /* UIKit.framework */; };
 		F368008B17043B7B002A403F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F368008A17043B7B002A403F /* Foundation.framework */; };
 		F368008D17043B7B002A403F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F368008C17043B7B002A403F /* CoreGraphics.framework */; };
@@ -16,9 +17,13 @@
 		F368009B17043B7B002A403F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F368009A17043B7B002A403F /* Default.png */; };
 		F368009D17043B7B002A403F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F368009C17043B7B002A403F /* Default@2x.png */; };
 		F368009F17043B7B002A403F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F368009E17043B7B002A403F /* Default-568h@2x.png */; };
+		F36800A71705463E002A403F /* TbNote.m in Sources */ = {isa = PBXBuildFile; fileRef = F36800A61705463E002A403F /* TbNote.m */; };
+		F36800AA1705469D002A403F /* BaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = F36800A91705469D002A403F /* BaseDao.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		335E940A5CDF4C28942F5B02 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		EF8B575B0834419ABFC2EB3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F368008517043B7B002A403F /* fmdb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fmdb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F368008817043B7B002A403F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F368008A17043B7B002A403F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -32,6 +37,10 @@
 		F368009A17043B7B002A403F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F368009C17043B7B002A403F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F368009E17043B7B002A403F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F36800A51705463E002A403F /* TbNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TbNote.h; sourceTree = "<group>"; };
+		F36800A61705463E002A403F /* TbNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TbNote.m; sourceTree = "<group>"; };
+		F36800A81705469C002A403F /* BaseDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDao.h; sourceTree = "<group>"; };
+		F36800A91705469D002A403F /* BaseDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDao.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +51,7 @@
 				F368008917043B7B002A403F /* UIKit.framework in Frameworks */,
 				F368008B17043B7B002A403F /* Foundation.framework in Frameworks */,
 				F368008D17043B7B002A403F /* CoreGraphics.framework in Frameworks */,
+				1E38116433564A07A054411B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +64,7 @@
 				F368008E17043B7B002A403F /* fmdb */,
 				F368008717043B7B002A403F /* Frameworks */,
 				F368008617043B7B002A403F /* Products */,
+				335E940A5CDF4C28942F5B02 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +82,7 @@
 				F368008817043B7B002A403F /* UIKit.framework */,
 				F368008A17043B7B002A403F /* Foundation.framework */,
 				F368008C17043B7B002A403F /* CoreGraphics.framework */,
+				EF8B575B0834419ABFC2EB3F /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -81,6 +93,10 @@
 				F368009717043B7B002A403F /* NUAppDelegate.h */,
 				F368009817043B7B002A403F /* NUAppDelegate.m */,
 				F368008F17043B7B002A403F /* Supporting Files */,
+				F36800A51705463E002A403F /* TbNote.h */,
+				F36800A61705463E002A403F /* TbNote.m */,
+				F36800A81705469C002A403F /* BaseDao.h */,
+				F36800A91705469D002A403F /* BaseDao.m */,
 			);
 			path = fmdb;
 			sourceTree = "<group>";
@@ -109,6 +125,7 @@
 				F368008117043B7B002A403F /* Sources */,
 				F368008217043B7B002A403F /* Frameworks */,
 				F368008317043B7B002A403F /* Resources */,
+				D0FB4B5B436741A1B409DAA6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,6 +177,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D0FB4B5B436741A1B409DAA6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F368008117043B7B002A403F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -167,6 +201,8 @@
 			files = (
 				F368009517043B7B002A403F /* main.m in Sources */,
 				F368009917043B7B002A403F /* NUAppDelegate.m in Sources */,
+				F36800A71705463E002A403F /* TbNote.m in Sources */,
+				F36800AA1705469D002A403F /* BaseDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +278,7 @@
 		};
 		F36800A317043B7B002A403F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335E940A5CDF4C28942F5B02 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fmdb/fmdb-Prefix.pch";
@@ -253,6 +290,7 @@
 		};
 		F36800A417043B7B002A403F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335E940A5CDF4C28942F5B02 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fmdb/fmdb-Prefix.pch";
@@ -281,6 +319,7 @@
 				F36800A417043B7B002A403F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,6 +7,7 @@
 //
 
 #import "NUAppDelegate.h"
+#import "FMDatabase.h"
 
 @implementation NUAppDelegate
 
@@ -45,5 +46,108 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+-(void) linkDatabase{
+    NSError *error;
+    fm = [NSFileManager defaultManager];
+    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"mwtDB.sqlite"];
+    success = [fm fileExistsAtPath:writableDBPath];
+    if(!success){
+        NSString *defaultDBPath = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"mwtDB.sqlite"];
+        
+        success = [fm copyItemAtPath:defaultDBPath toPath:writableDBPath
+                               error:&error];
+        if(!success){
+            NSLog([error localizedDescription]);
+        }
+    }
+    
+    //連接資料庫
+    FMDatabase *db = [FMDatabase databaseWithPath:writableDBPath];
+    if([db open]){
+        [db setShouldCacheStatements:YES];
+        
+        
+        // INSERT
+        [db beginTransaction];
+        int i = 0;
+        while (i++ < 20) {
+            [db executeUpdate:@"INSERT INTO TEST (name) values (?)" , [NSString stringWithFormat:@"number %d", i]];
+            if ([db hadError]) {
+                NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+            }
+        }
+        [db commit];
+        //SELECT
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM docData"];
+        while ([rs next]){
+            NSLog(@"%d,%@,%@",[rs intForColumn:@"m_Id"],[rs stringForColumn:@"m_Title"],[rs stringForColumn:@"m_Url"]);
+        }
+        [rs close];
+        [db close];
+    }else{
+        NSLog(@"無法開啟資料庫");
+    }
+}
+
+-(void) createDatabase{
+    NSURL *appUrl = [[[NSFileManager defaultManager]
+                      URLsForDirectory:NSDocumentDirectory
+                      inDomains:NSUserDomainMask] lastObject];
+    NSString *dbPath = [[appUrl path] stringByAppendingPathComponent:@"MyDatabase.db"];
+    FMDatabase* db = [FMDatabase databaseWithPath:dbPath];
+    if (![db open]) {
+        NSLog(@"Could not open db");
+    }else{
+        if(![db executeUpdate:@"CREATE TABLE IF NOT EXISTS user (uid integer primary key asc autoincrement, name text, description text)"])
+        {
+            NSLog(@"Could not create table: %@", [db lastErrorMessage]);
+        }
+    }
+}
+
+
+-(void) appInit{
+    NSMutableArray *_items = [NSMutableArray arrayWithCapacity:0];
+    fm = [NSFileManager defaultManager];
+    paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"mwtDB.sqlite"];
+    if(!success){
+        NSString *defaultDBPath = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"mwtDB.sqlite"];
+        NSError *error;
+        success = [fm copyItemAtPath:defaultDBPath toPath:writableDBPath
+                               error:&error];
+        if(!success){
+            NSLog(@"Error");
+        }
+    }
+    
+    //連接資料庫
+    FMDatabase *db = [FMDatabase databaseWithPath:writableDBPath];
+    if([db open]){
+        [db setShouldCacheStatements:YES];
+        
+        //SELECT
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM docData"];
+        while ([rs next]){
+            NSLog(@"%d,%@,%@",[rs intForColumn:@"m_Id"],[rs stringForColumn:@"m_Title"],[rs stringForColumn:@"m_Url"]);
+            int m_id = [rs intForColumn:@"m_Id"];
+            int m_title = [rs intForColumn:@"m_Title"];
+            int m_url = [rs intForColumn:@"m_Url"];
+            
+            //將資料放入陣列中
+            [_items addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:m_id],@"m_Id",m_title,@"m_Title",m_url,@"m_Url",nil]];
+            
+        }
+        [rs close];
+        [db close];
+    }else{
+        NSLog(@"無法開啟資料庫");
+    }
+}
+
 
 @end
